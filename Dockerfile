@@ -79,5 +79,7 @@ RUN uv venv && \
 ENV HERMES_WEB_DIST=/opt/hermes/hermes_cli/web_dist
 ENV HERMES_HOME=/opt/data
 ENV PATH="/opt/data/.local/bin:${PATH}"
-VOLUME [ "/opt/data" ]
+# VOLUME [ "/opt/data" ]  # Removed for Railway compatibility — Railway requires
+# volumes to be declared in the Railway dashboard (Service → Volumes), not in the
+# Dockerfile. Mount a Railway Volume at /opt/data for persistent data.
 ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint.sh" ]
